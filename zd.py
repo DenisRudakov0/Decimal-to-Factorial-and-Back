@@ -1,5 +1,3 @@
-from math import *
-
 def dec_2_fact_string(nb):
     factorial_string, i = '', 1
     while nb != 0:
@@ -10,11 +8,14 @@ def dec_2_fact_string(nb):
         nb = nb // i
         i += 1
     return factorial_string[::-1]
-    
+
 def fact_string_2_dec(string):
-    string, nb = [int(string[i]) for i in range(len(string))], 0
+    nb = 0
     for i in range(len(string)):
-        nb = nb * (len(string) - i) + (string[i])
+        if str(string[i]) not in '0123456789':
+            nb = nb * (len(string) - i) + int((ord(string[i]))) - 55
+        else:
+            nb = nb * (len(string) - i) + int(string[i])
     return nb
 
 print(dec_2_fact_string(36288000))
